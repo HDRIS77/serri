@@ -1,10 +1,11 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<html lang="ar" dir="rtl" data-theme="dark">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Serri</title>
     <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet"> <!-- Professional font -->
     <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js"></script>
@@ -13,12 +14,15 @@
 </head>
 <body>
     <div id="app">
-        <!-- Header with Language and Theme Toggle -->
+        <!-- Header with Logo, Language, and Theme Toggle -->
         <header>
-            <h1 id="app-title">Serri</h1>
+            <div class="logo">
+                <img src="assets/logo.png" alt="Serri Logo" style="width: 40px; height: 40px;"> <!-- Placeholder logo; replace with your image -->
+                <h1 id="app-title">Serri</h1>
+            </div>
             <div class="toggles">
                 <button id="lang-toggle" onclick="toggleLanguage()">EN</button>
-                <button id="theme-toggle" onclick="toggleTheme()">🌙</button>
+                <button id="theme-toggle" onclick="toggleTheme()">☀️</button>
             </div>
         </header>
 
@@ -74,6 +78,11 @@
             <button onclick="showProfile()">الملف الشخصي</button>
             <button onclick="logout()">تسجيل الخروج</button>
         </nav>
+
+        <!-- Footer -->
+        <footer>
+            <p>&copy; 2023 Serri. جميع الحقوق محفوظة.</p>
+        </footer>
     </div>
     <script src="app.js"></script>
 </body>
