@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Serri</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-storage.js"></script>
+    <script src="firebase-config.js"></script>
+</head>
+<body>
+    <div id="app">
+        <!-- Header with Language and Theme Toggle -->
+        <header>
+            <h1 id="app-title">Serri</h1>
+            <div class="toggles">
+                <button id="lang-toggle" onclick="toggleLanguage()">EN</button>
+                <button id="theme-toggle" onclick="toggleTheme()">🌙</button>
+            </div>
+        </header>
+
+        <!-- Auth Section -->
+        <div id="auth-section" class="section">
+            <h2 id="auth-title">تسجيل الدخول</h2>
+            <form id="login-form">
+                <input type="email" id="email" placeholder="البريد الإلكتروني" required>
+                <input type="password" id="password" placeholder="كلمة المرور" required>
+                <button type="submit" id="login-btn">تسجيل الدخول</button>
+                <button type="button" id="google-btn">تسجيل الدخول بـ Google</button>
+                <p id="auth-switch">ليس لديك حساب؟ <a href="#" onclick="showSignup()">إنشاء حساب</a></p>
+            </form>
+            <form id="signup-form" style="display: none;">
+                <input type="email" id="signup-email" placeholder="البريد الإلكتروني" required>
+                <input type="password" id="signup-password" placeholder="كلمة المرور" required>
+                <button type="submit" id="signup-btn">إنشاء حساب</button>
+                <p id="signup-switch">لديك حساب؟ <a href="#" onclick="showLogin()">تسجيل الدخول</a></p>
+            </form>
+        </div>
+
+        <!-- Main Feed -->
+        <div id="feed-section" class="section" style="display: none;">
+            <div id="posts-container"></div>
+        </div>
+
+        <!-- Profile Section -->
+        <div id="profile-section" class="section" style="display: none;">
+            <h2 id="profile-title">ملفي الشخصي</h2>
+            <p id="profile-link">رابطك الشخصي: <span id="personal-link"></span> <button onclick="copyLink()">نسخ</button></p>
+            <div id="user-posts"></div>
+        </div>
+
+        <!-- New Post Modal -->
+        <div id="new-post-modal" class="modal" style="display: none;">
+            <div class="modal-content">
+                <span class="close" onclick="closeModal()">&times;</span>
+                <h2 id="new-post-title">منشور جديد</h2>
+                <textarea id="post-text" placeholder="اكتب منشورك..."></textarea>
+                <input type="file" id="image-upload" accept="image/*">
+                <canvas id="text-on-image-canvas" style="display: none;"></canvas>
+                <button id="add-text-btn" onclick="addTextToImage()">إضافة نص على الصورة</button>
+                <button onclick="publishPost()">نشر</button>
+            </div>
+        </div>
+
+        <!-- Floating Action Button -->
+        <button id="fab" onclick="openModal()">+</button>
+
+        <!-- Navigation -->
+        <nav>
+            <button onclick="showFeed()">المنشورات</button>
+            <button onclick="showProfile()">الملف الشخصي</button>
+            <button onclick="logout()">تسجيل الخروج</button>
+        </nav>
+    </div>
+    <script src="app.js"></script>
+</body>
+</html>
