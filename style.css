@@ -1,26 +1,31 @@
 :root {
-    --bg-color: linear-gradient(135deg, #f5f7fa, #c3cfe2);
-    --card-bg: rgba(255, 255, 255, 0.9);
-    --text-color: #333;
-    --accent: #4a90e2;
-    --shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    --bg-color: #000000; /* Pure black background */
+    --card-bg: rgba(20, 20, 20, 0.95); /* Dark card with slight transparency */
+    --text-color: #ffffff; /* White text for contrast */
+    --accent: #00FFFF; /* Neon Blue */
+    --shadow: 0 4px 12px rgba(0, 255, 255, 0.3); /* Neon glow shadow */
+    --glow: 0 0 10px #00FFFF; /* Neon glow effect */
+    --font-family: 'Roboto', 'Segoe UI', sans-serif; /* Professional font */
 }
 
-[data-theme="dark"] {
-    --bg-color: linear-gradient(135deg, #2c3e50, #34495e);
-    --card-bg: rgba(0, 0, 0, 0.8);
-    --text-color: #ecf0f1;
-    --accent: #3498db;
+[data-theme="light"] {
+    --bg-color: linear-gradient(135deg, #f5f7fa, #c3cfe2); /* Light gradient for light mode */
+    --card-bg: rgba(255, 255, 255, 0.95);
+    --text-color: #333333;
+    --accent: #4a90e2; /* Standard blue for light mode */
+    --shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    --glow: none;
 }
 
 body {
-    font-family: 'Arial', sans-serif;
+    font-family: var(--font-family);
     margin: 0;
     padding: 0;
     background: var(--bg-color);
     color: var(--text-color);
-    transition: background 0.3s, color 0.3s;
+    transition: background 0.3s ease, color 0.3s ease;
     direction: rtl;
+    line-height: 1.6; /* Better readability */
 }
 
 [data-lang="en"] {
@@ -31,50 +36,87 @@ header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 1rem;
+    padding: 1.5rem 2rem;
     background: var(--card-bg);
-    backdrop-filter: blur(10px);
+    backdrop-filter: blur(15px);
     box-shadow: var(--shadow);
+    border-bottom: 1px solid var(--accent);
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.logo h1 {
+    margin: 0;
+    font-weight: 700;
+    font-size: 1.8rem;
+    text-shadow: var(--glow);
 }
 
 .toggles button {
     margin-left: 0.5rem;
     background: var(--accent);
-    color: white;
+    color: #000000;
     border: none;
-    padding: 0.5rem;
-    border-radius: 50%;
+    padding: 0.6rem 1rem;
+    border-radius: 25px;
     cursor: pointer;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    box-shadow: var(--glow);
+}
+
+.toggles button:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 15px var(--accent);
 }
 
 .section {
-    padding: 1rem;
-    max-width: 800px;
+    padding: 2rem;
+    max-width: 900px;
     margin: 0 auto;
+    min-height: calc(100vh - 200px); /* Ensure full height */
 }
 
 .card {
     background: var(--card-bg);
-    border-radius: 10px;
-    padding: 1rem;
-    margin: 1rem 0;
+    border-radius: 15px;
+    padding: 1.5rem;
+    margin: 1.5rem 0;
     box-shadow: var(--shadow);
-    backdrop-filter: blur(10px);
+    backdrop-filter: blur(15px);
+    border: 1px solid var(--accent);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0, 255, 255, 0.5);
 }
 
 #fab {
     position: fixed;
-    bottom: 2rem;
+    bottom: 3rem;
     right: 2rem;
     background: var(--accent);
-    color: white;
+    color: #000000;
     border: none;
-    width: 60px;
-    height: 60px;
+    width: 70px;
+    height: 70px;
     border-radius: 50%;
     font-size: 2rem;
+    font-weight: 700;
     cursor: pointer;
-    box-shadow: var(--shadow);
+    box-shadow: var(--glow);
+    transition: all 0.3s ease;
+}
+
+#fab:hover {
+    transform: scale(1.1);
+    box-shadow: 0 0 20px var(--accent);
 }
 
 .modal {
@@ -83,18 +125,34 @@ header {
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.5);
+    background: rgba(0, 0, 0, 0.8);
     display: flex;
     justify-content: center;
     align-items: center;
+    backdrop-filter: blur(10px);
+    animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
 }
 
 .modal-content {
     background: var(--card-bg);
-    padding: 2rem;
-    border-radius: 10px;
+    padding: 2.5rem;
+    border-radius: 15px;
     width: 90%;
-    max-width: 500px;
+    max-width: 550px;
+    box-shadow: var(--shadow);
+    border: 1px solid var(--accent);
+}
+
+.close {
+    float: right;
+    font-size: 2rem;
+    cursor: pointer;
+    color: var(--accent);
 }
 
 nav {
@@ -104,33 +162,93 @@ nav {
     background: var(--card-bg);
     display: flex;
     justify-content: space-around;
-    padding: 1rem;
+    padding: 1.5rem;
     box-shadow: var(--shadow);
+    border-top: 1px solid var(--accent);
+}
+
+nav button {
+    background: transparent;
+    color: var(--text-color);
+    border: 1px solid var(--accent);
+    padding: 0.8rem 1.5rem;
+    border-radius: 25px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+nav button:hover {
+    background: var(--accent);
+    color: #000000;
+    box-shadow: var(--glow);
 }
 
 button {
     background: var(--accent);
-    color: white;
+    color: #000000;
     border: none;
-    padding: 0.5rem 1rem;
-    border-radius: 5px;
+    padding: 0.8rem 1.5rem;
+    border-radius: 25px;
     cursor: pointer;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    box-shadow: var(--glow);
+}
+
+button:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 15px var(--accent);
 }
 
 input, textarea {
     width: 100%;
-    padding: 0.5rem;
-    margin: 0.5rem 0;
-    border: 1px solid #ccc;
-    border-radius: 5px;
+    padding: 0.8rem;
+    margin: 0.8rem 0;
+    border: 1px solid var(--accent);
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.1);
+    color: var(--text-color);
+    font-family: var(--font-family);
+    transition: border-color 0.3s ease;
 }
 
-/* Responsive */
+input:focus, textarea:focus {
+    outline: none;
+    border-color: var(--accent);
+    box-shadow: var(--glow);
+}
+
+footer {
+    text-align: center;
+    padding: 1rem;
+    background: var(--card-bg);
+    border-top: 1px solid var(--accent);
+    font-size: 0.9rem;
+    color: var(--text-color);
+}
+
+/* Responsive Enhancements */
 @media (max-width: 768px) {
     header {
         flex-direction: column;
+        padding: 1rem;
+    }
+    .logo h1 {
+        font-size: 1.5rem;
     }
     nav {
         flex-direction: column;
+        gap: 0.5rem;
+    }
+    #fab {
+        bottom: 2rem;
+        right: 1rem;
+        width: 60px;
+        height: 60px;
+        font-size: 1.5rem;
+    }
+    .section {
+        padding: 1rem;
     }
 }
